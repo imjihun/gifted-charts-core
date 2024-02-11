@@ -250,8 +250,7 @@ export const useLineChart = (props: extendedLineChartPropsType) => {
   const spacing =
     props.spacing ??
     (adjustToWidth
-      ? ((props.width ?? screenWidth - yAxisLabelWidth) - initialSpacing) /
-        Math.max((data0 ?? data).length - 1, 1)
+      ? ((props.width ?? screenWidth - yAxisLabelWidth) - initialSpacing) / Math.max((data0 ?? data).length - 1, 1)
       : LineDefaults.spacing);
 
   const xAxisThickness =
@@ -695,11 +694,11 @@ export const useLineChart = (props: extendedLineChartPropsType) => {
     return isLast && !(around || before)
       ? " "
       : " L" +
-          (getX(index) +
-            (around ? (isLast ? 0 : spacing / 2) : before ? 0 : spacing)) +
-          " " +
-          getY(data[index].value) +
-          " ";
+      (getX(index) +
+        (around ? (isLast ? 0 : spacing / 2) : before ? 0 : spacing)) +
+      " " +
+      getY(data[index].value) +
+      " ";
   };
   const getStepPath = (data, i) => {
     const around = edgePosition === EdgePosition.AROUND_DATA_POINT;
@@ -1571,6 +1570,9 @@ export const useLineChart = (props: extendedLineChartPropsType) => {
   const autoAdjustPointerLabelPosition =
     pointerConfig?.autoAdjustPointerLabelPosition ??
     defaultPointerConfig.autoAdjustPointerLabelPosition;
+  const topPointerLabel =
+    pointerConfig?.topPointerLabel ??
+    defaultPointerConfig.topPointerLabel;
   const pointerVanishDelay =
     pointerConfig?.pointerVanishDelay ??
     defaultPointerConfig.pointerVanishDelay;
@@ -1647,9 +1649,9 @@ export const useLineChart = (props: extendedLineChartPropsType) => {
   const getPointerY = (value) =>
     value
       ? containerHeight -
-        (value * containerHeight) / maxValue -
-        (pointerRadius || pointerHeight / 2) +
-        10
+      (value * containerHeight) / maxValue -
+      (pointerRadius || pointerHeight / 2) +
+      10
       : 0;
 
   const initialisePointers = () => {
@@ -2082,6 +2084,7 @@ export const useLineChart = (props: extendedLineChartPropsType) => {
     pointerLabelWidth,
     pointerLabelHeight,
     autoAdjustPointerLabelPosition,
+    topPointerLabel,
     pointerVanishDelay,
     activatePointersOnLongPress,
     activatePointersDelay,

@@ -256,6 +256,7 @@ export const defaultPointerConfig = {
   pointerLabelWidth: 20,
   pointerLabelHeight: 20,
   autoAdjustPointerLabelPosition: false,
+  topPointerLabel: false,
   pointerVanishDelay: 150,
   activatePointersOnLongPress: false,
   activatePointersDelay: 150,

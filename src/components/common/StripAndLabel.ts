@@ -3,6 +3,7 @@ import { screenWidth } from "../../utils/constants";
 export const getTopAndLeftForStripAndLabel = (props) => {
   const {
     autoAdjustPointerLabelPosition,
+    topPointerLabel,
     pointerX,
     pointerLabelWidth,
     activatePointersOnLongPress,
@@ -17,52 +18,51 @@ export const getTopAndLeftForStripAndLabel = (props) => {
     shiftPointerLabelY,
     scrollX,
   } = props;
-  let left = 0,
-    top = 0;
-  if (autoAdjustPointerLabelPosition) {
-    if (pointerX < pointerLabelWidth / 2) {
-      left = 7;
-    } else if (
-      activatePointersOnLongPress &&
-      pointerX - scrollX < pointerLabelWidth / 2 - 10
-    ) {
-      left = 7;
+  let left = 0, top = 0;
+
+  if (topPointerLabel) {
+    top = -pointerYLocal
+  }
+  else if (autoAdjustPointerLabelPosition) {
+    if ((pointerStripHeight - pointerYLocal) - pointerLabelHeight > 10) {
+      top = 10;
     } else {
-      if (
-        !activatePointersOnLongPress &&
-        pointerX >
-          (props.width || screenWidth - yAxisLabelWidth - 15) -
-            pointerLabelWidth / 2
-      ) {
-        left = -pointerLabelWidth - 4;
-      } else if (
-        activatePointersOnLongPress &&
-        pointerX - scrollX >
-          ((props.width ?? 0) + 10 || screenWidth - yAxisLabelWidth - 15) -
-            pointerLabelWidth / 2
-      ) {
-        left = -pointerLabelWidth - 4;
-      } else {
-        left = -pointerLabelWidth / 2 + 5;
-      }
+      top = (pointerStripHeight - pointerYLocal) - pointerLabelHeight;
     }
   } else {
-    left = (pointerRadius || pointerWidth / 2) - 10 + shiftPointerLabelX;
+    top = (
+      pointerStripUptoDataPoint
+        ? pointerRadius || pointerStripHeight / 2
+        : -pointerYLocal + 8
+    ) - pointerLabelWidth / 2 + shiftPointerLabelY;
   }
 
   if (autoAdjustPointerLabelPosition) {
-    if (pointerLabelHeight - pointerYLocal > 10) {
-      top = 10;
-    } else {
-      top = -pointerLabelHeight;
+    const isCoveredPointer = top < 0 && top + pointerLabelHeight > 0
+
+    const widthFromLeft = activatePointersOnLongPress
+      ? pointerX - scrollX + 10
+      : pointerX
+    const widthFromRight = activatePointersOnLongPress
+      ? ((props.width ?? 0) + 10 || screenWidth - yAxisLabelWidth - 15) - (pointerX - scrollX)
+      : (props.width || screenWidth - yAxisLabelWidth - 15) - pointerX
+    if (
+      widthFromLeft < pointerLabelWidth / 2
+      || isCoveredPointer && !(widthFromRight < pointerLabelWidth)
+    ) {
+      left = (pointerWidth || 3) + 4;
+    }
+    else if (
+      widthFromRight < pointerLabelWidth / 2
+      || isCoveredPointer && !(widthFromLeft < pointerLabelWidth)
+    ) {
+      left = -pointerLabelWidth - 4;
+    }
+    else {
+      left = -pointerLabelWidth / 2 + 5;
     }
   } else {
-    top =
-      (pointerStripUptoDataPoint
-        ? pointerRadius || pointerStripHeight / 2
-        : -pointerYLocal + 8) -
-      pointerLabelWidth / 2 +
-      shiftPointerLabelY;
+    left = (pointerRadius || pointerWidth / 2) - 10 + shiftPointerLabelX;
   }
 
   return {

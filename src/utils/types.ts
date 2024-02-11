@@ -280,6 +280,7 @@ export type Pointer = {
   pointerLabelComponent?: Function;
   stripOverPointer?: boolean;
   autoAdjustPointerLabelPosition?: boolean;
+  topPointerLabel?: boolean;
   shiftPointerLabelX?: number;
   shiftPointerLabelY?: number;
   pointerLabelWidth?: number;
