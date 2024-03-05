@@ -406,7 +406,7 @@ export const useLineChart = (props: extendedLineChartPropsType) => {
   const textColor5 =
     props.textColor5 ?? props.textColor ?? LineDefaults.textColor;
 
-  const totalWidth = initialSpacing + spacing * (data0 ?? data).length;
+  const totalWidth = initialSpacing + (spacing * ((data0 ?? data).length - 1)) + endSpacing;
 
   const { maxItem, minItem } = computeMaxAndMinItems(
     data0 ?? data,
