@@ -194,6 +194,8 @@ export type BarAndLineChartsWrapperTypes = {
   stepHeight: number;
   labelsExtraHeight: number;
   yAxisLabelWidth: number;
+  labelsExtraWidth: number;
+  xAxisLabelWidth: number;
   horizontal: boolean;
   rtl: boolean;
   shiftX: number;

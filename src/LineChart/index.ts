@@ -178,6 +178,8 @@ export const useLineChart = (props: extendedLineChartPropsType) => {
     props.scrollEventThrottle ?? LineDefaults.scrollEventThrottle;
 
   const labelsExtraHeight = props.labelsExtraHeight || 0;
+  const labelsExtraWidth = props.labelsExtraWidth || 0;
+  const xAxisLabelWidth = props.xAxisLabelWidth || 0;
 
   const animationDuration =
     props.animationDuration || LineDefaults.animationDuration;
@@ -1715,6 +1717,8 @@ export const useLineChart = (props: extendedLineChartPropsType) => {
     stepHeight,
     labelsExtraHeight,
     yAxisLabelWidth,
+    labelsExtraWidth,
+    xAxisLabelWidth,
     horizontal,
     rtl: false,
     shiftX: 0,
@@ -1872,6 +1876,9 @@ export const useLineChart = (props: extendedLineChartPropsType) => {
     scrollAnimation,
     scrollEventThrottle,
     labelsExtraHeight,
+    yAxisLabelWidth,
+    labelsExtraWidth,
+    xAxisLabelWidth,
     animationDuration,
     onDataChangeAnimationDuration,
     animateTogether,
@@ -1896,7 +1903,6 @@ export const useLineChart = (props: extendedLineChartPropsType) => {
     initialSpacing,
     endSpacing,
     thickness,
-    yAxisLabelWidth,
     spacing,
     xAxisThickness,
     dataPointsHeight1,

@@ -167,6 +167,7 @@ export type LineChartPropsType = {
   showFractionalValues?: boolean;
   roundToDigits?: number;
   yAxisLabelWidth?: number;
+  xAxisLabelWidth?: number;
   hideYAxisText?: boolean;
 
   backgroundColor?: ColorValue;
@@ -284,6 +285,7 @@ export type LineChartPropsType = {
   scrollEventThrottle?: number;
   noOfSectionsBelowXAxis?: number;
   labelsExtraHeight?: number;
+  labelsExtraWidth?: number;
   adjustToWidth?: boolean;
   getPointerProps?: Function;
   showArrows?: boolean;
