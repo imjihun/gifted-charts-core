@@ -283,6 +283,7 @@ export type Pointer = {
   stripOverPointer?: boolean;
   autoAdjustPointerLabelPosition?: boolean;
   topPointerLabel?: boolean;
+  shouldBlockNativeResponder?: boolean;
   shiftPointerLabelX?: number;
   shiftPointerLabelY?: number;
   pointerLabelWidth?: number;
